@@ -82,6 +82,7 @@ public class GameController {
     }
 
     public void update() {
+        updateScoreLabel();
         getView().repaint();
         checkGameOver();
     }
@@ -92,7 +93,7 @@ public class GameController {
         if (model.isGameOver()) {
             gameOver = true; // 标记游戏已结束
             showWinDialog();
-        } else if (model.getScore() < 0) {
+        } else if (model.getScore() <= 0) {
             gameOver = true; // 标记游戏已结束
             showLostDialog();
         }

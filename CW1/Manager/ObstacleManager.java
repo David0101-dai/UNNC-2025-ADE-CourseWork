@@ -4,15 +4,19 @@ import CW1.MVCPatten.GameConfig;
 import CW1.MVCPatten.GameModel;
 import CW1.PathFinder.PathFinder;
 
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 public class ObstacleManager {
     private GameModel model;
     private PathFinder pathFinder;
+    private Set<int[]> obstacles;  // 用 Set 来存储障碍物的位置，避免重复
 
     public ObstacleManager(GameModel model, PathFinder pathFinder) {
         this.model = model;
         this.pathFinder = pathFinder;  // 这里可能是 null
+        this.obstacles = new HashSet<>();  // 初始化障碍物集合
     }
 
     public void placeObstacles() {
@@ -24,18 +28,24 @@ public class ObstacleManager {
             int y = rand.nextInt(GameConfig.MAP_SIZE);
 
             if (model.getMap()[x][y] == GameConfig.EMPTY) {
-                // 先放置障碍物，然后检查路径
                 model.getMap()[x][y] = GameConfig.OBSTACLE;
+                obstacles.add(new int[]{x, y});  // 存储障碍物位置
 
-                // 检查路径是否可用
                 if (!pathFinder.pathsAreClear()) {
-                    model.getMap()[x][y] = GameConfig.EMPTY;  // 如果路径不可用，撤回该障碍物
+                    model.getMap()[x][y] = GameConfig.EMPTY;  // 撤回障碍物
+                    obstacles.remove(new int[]{x, y});  // 从集合中移除
                 } else {
-                    placedObstacles++;  // 如果路径可用，继续放置障碍物
+                    placedObstacles++;
                 }
             }
         }
     }
+
+    // 获取所有障碍物的位置
+    public Set<int[]> getObstacles() {
+        return obstacles;
+    }
 }
+
 
 

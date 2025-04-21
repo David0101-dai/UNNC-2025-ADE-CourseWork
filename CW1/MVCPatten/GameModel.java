@@ -23,7 +23,7 @@ public class GameModel {
         this.controller = controller;
         this.pathFinder = new BFSPathFinder(this);
 
-        mapManager = new MapManager();
+        mapManager = new MapManager(this);
         player = new Player(this);
         treasureManager = new TreasureManager(this);
         obstacleManager = new ObstacleManager(this, pathFinder);

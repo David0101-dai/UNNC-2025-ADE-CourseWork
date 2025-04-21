@@ -63,11 +63,12 @@ public class GameView extends JPanel {
 
                 if (map[i][j] == GameConfig.EMPTY) {
                     g.setColor(Color.WHITE);
-                } else if (map[i][j] == GameConfig.OBSTACLE) {
+                } // 绘制障碍物的状态
+                else if (map[i][j] == GameConfig.OBSTACLE) {
                     if (obstacleTouched[i][j]) {
                         g.setColor(Color.BLACK);  // 被触碰的障碍物
                     } else {
-                        g.setColor(Color.GRAY);  // 未触碰的障碍物
+                        g.setColor(Color.WHITE);  // 初始状态障碍物为白色
                     }
                 } else if (map[i][j] == GameConfig.TREASURE) {
                     // 如果宝藏距离玩家较近，变成黄色

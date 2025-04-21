@@ -9,7 +9,6 @@ public class Player {
     private int x, y;
     private GameModel model;
 
-    // 私有构造函数，防止外部直接创建实例
     public Player(GameModel model) {
         this.model = model;
     }
@@ -42,7 +41,11 @@ public class Player {
             model.decreaseScore(1);
         } else if (model.getMap()[newX][newY] == GameConfig.OBSTACLE) {
             model.getController().getView().setMessage("You bumped into an obstacle!");
-            model.decreaseScore(10);
+            if(model.getMapManager().getObstacleTouched()[newX][newY] == false) {
+                model.decreaseScore(10);
+                // 更新 obstacleTouched 数组为 true
+                model.getMapManager().getObstacleTouched()[newX][newY] = true;
+            }
         } else if (model.getMap()[newX][newY] == GameConfig.TREASURE){
             model.addScore(10);
             model.playerCollectsTreasure(newX, newY);
@@ -69,3 +72,4 @@ public class Player {
         return y;
     }
 }
+
