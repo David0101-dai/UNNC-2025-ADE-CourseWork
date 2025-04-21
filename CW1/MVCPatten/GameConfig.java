@@ -6,7 +6,7 @@ public class GameConfig {
     public static final int MAP_SIZE = 20;
     public static final int VIEW_SIZE = 20;
     public static final int NUM_TREASURES = 3;
-    public static final int NUM_OBSTACLES = 80;
+    public static final int NUM_OBSTACLES = 50;
     public static final int TILE_SIZE = 30;
     public static final long MESSAGE_DURATION = 2000;
 

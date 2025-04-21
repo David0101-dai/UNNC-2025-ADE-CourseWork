@@ -24,9 +24,9 @@ public class GameModel {
         this.pathFinder = new BFSPathFinder(this);
 
         mapManager = new MapManager();
-        player = new Player(this);  // 将 GameModel 实例传递给 Player
-        treasureManager = new TreasureManager(this);  // 将 GameModel 传递给 TreasureManager
-        obstacleManager = new ObstacleManager(this, pathFinder);  // 将 GameModel 实例传递给 ObstacleManager
+        player = new Player(this);
+        treasureManager = new TreasureManager(this);
+        obstacleManager = new ObstacleManager(this, pathFinder);
 
         initializeGame();
     }
@@ -64,7 +64,6 @@ public class GameModel {
 
     public void movePlayer(char direction) {
         player.movePlayer(direction);
-        score -= 1;  // 每次移动都扣除1分
         controller.update();  // 让 GameController 负责路径更新和界面刷新
     }
 
@@ -111,6 +110,19 @@ public class GameModel {
     public void addScore(int points) {
         score += points;
     }
+
+    public MapManager getMapManager() {
+        return mapManager;
+    }
+
+    public TreasureManager getTreasureManager() {
+        return treasureManager;
+    }
+
+    public ObstacleManager getObstacleManager() {
+        return obstacleManager;
+    }
+
 }
 
 

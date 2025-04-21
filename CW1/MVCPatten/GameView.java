@@ -75,7 +75,7 @@ public class GameView extends JPanel {
                     if (distance <= 3) {  // 3格以内视为靠近
                         g.setColor(Color.YELLOW);
                     } else {
-                        g.setColor(Color.YELLOW);  // 初始状态为黄色
+                        g.setColor(Color.WHITE);  // 初始状态为黄色
                     }
                 } else if (map[i][j] == GameConfig.PLAYER) {
                     g.setColor(Color.BLUE);

@@ -9,6 +9,7 @@ public class Player {
     private int x, y;
     private GameModel model;
 
+    // 私有构造函数，防止外部直接创建实例
     public Player(GameModel model) {
         this.model = model;
     }
@@ -44,19 +45,20 @@ public class Player {
             model.decreaseScore(10);
         } else if (model.getMap()[newX][newY] == GameConfig.TREASURE){
             model.addScore(10);
-            model.playerCollectsTreasure(newX,newY);
+            model.playerCollectsTreasure(newX, newY);
             model.getMap()[x][y] = GameConfig.EMPTY;
             x = newX;
             y = newY;
             model.getMap()[x][y] = GameConfig.PLAYER;
-        }else {
+        } else {
+            model.decreaseScore(1);
             model.getMap()[x][y] = GameConfig.EMPTY;
             x = newX;
             y = newY;
             model.getMap()[x][y] = GameConfig.PLAYER;
         }
 
-        model.getController().getView().repaint();  // 更新视图
+        model.getController().getView().repaint();
     }
 
     public int getX() {
@@ -67,4 +69,3 @@ public class Player {
         return y;
     }
 }
-

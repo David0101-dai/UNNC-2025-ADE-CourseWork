@@ -1,5 +1,6 @@
 package CW1.MVCPatten;
 
+import CW1.Manager.Player;
 import CW1.PathFinder.AStarPathFinder;
 import CW1.PathFinder.BFSPathFinder;
 import CW1.PathFinder.GreedyPathFinder;
@@ -23,6 +24,7 @@ public class GameController {
         view = new GameView(model, this);
         initializePathFinders();
     }
+
 
     private void initializePathFinders() {
         pathFinders = new HashMap<>();
@@ -118,21 +120,28 @@ public class GameController {
 
     private void restartGame() {
         gameOver = false; // 重置游戏结束标志
+
+        // 重新初始化模型和视图
         model = new GameModel(this);
         view = new GameView(model, this);
         initializePathFinders();
+
+        // 清空旧视图并重新添加
         frame.getContentPane().removeAll();
         frame.add(view, BorderLayout.CENTER);
 
+        // 更新得分面板
         JPanel scorePanel = new JPanel();
         scorePanel.add(view.getScoreLabel());
         frame.add(scorePanel, BorderLayout.NORTH);
         frame.add(createButtonPanel(), BorderLayout.SOUTH);
 
+        // 强制刷新界面
         frame.revalidate();
-        frame.repaint();
-        view.requestFocusInWindow();
+        frame.repaint();  // 确保视图被重新绘制
+        view.requestFocusInWindow();  // 使视图获取焦点
     }
+
 
     public void handleHintButton(String hintType) {
         if (model.getScore() >= 3) {

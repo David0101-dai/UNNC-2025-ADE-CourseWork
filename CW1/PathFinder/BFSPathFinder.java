@@ -62,22 +62,32 @@ public class BFSPathFinder extends PathFinder {
         return path;
     }
 
-    // 实现 pathsAreClear 方法
     @Override
     public boolean pathsAreClear() {
-        // 假设玩家位置是 model.getPlayerX(), model.getPlayerY()
+        // 获取玩家位置
         int playerX = model.getPlayerX();
         int playerY = model.getPlayerY();
 
-        // 获取最近的宝藏
-        int[] nearestTreasure = findNearestTreasure(playerX, playerY, model.getTreasures());
-        if (nearestTreasure == null) {
-            return false;  // 如果没有找到宝藏，返回 false
+        // 获取所有宝藏的位置
+        List<int[]> treasures = model.getTreasures();
+
+        // 遍历所有宝藏，检查每个宝藏是否都有一条有效路径
+        for (int[] treasure : treasures) {
+            int targetX = treasure[0];
+            int targetY = treasure[1];
+
+            // 尝试找到从玩家到宝藏的路径
+            List<int[]> path = findPathBFS(playerX, playerY, targetX, targetY);
+
+            // 如果路径不存在，返回 false
+            if (path == null || path.isEmpty()) {
+                return false;
+            }
         }
 
-        // 尝试找到一条从玩家到最近宝藏的有效路径
-        List<int[]> path = findPathBFS(playerX, playerY, nearestTreasure[0], nearestTreasure[1]);
-        return path != null && !path.isEmpty();
+        // 如果所有宝藏都有有效路径，返回 true
+        return true;
     }
+
 
 }
