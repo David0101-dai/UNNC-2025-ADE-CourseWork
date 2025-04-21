@@ -9,7 +9,6 @@ public class Main {
     public static void main(String[] args) {
         GameController controller = GameController.getInstance();
         controller.start();
-
         // 定时调用 update 方法，周期为 50ms
         Timer timer = new Timer(50, (ActionEvent e) -> controller.update());
         timer.start();  // 启动定时器

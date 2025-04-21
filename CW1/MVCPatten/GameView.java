@@ -9,10 +9,9 @@ public class GameView extends JPanel {
     private GameModel model;
     private JLabel scoreLabel;
     private GameController controller;
-
     private String message = "";
     private long messageTime = 0;
-    private static final long MESSAGE_DURATION = 2000;
+
 
     public GameView(GameModel model, GameController controller) {
         this.model = model;
@@ -24,7 +23,7 @@ public class GameView extends JPanel {
 
         // 创建积分面板
         scoreLabel = new JLabel("Score: " + model.getScore());
-        scoreLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        scoreLabel.setFont(GameConfig.SCORE_FONT);
         JPanel scorePanel = new JPanel();
         scorePanel.add(scoreLabel);
 
@@ -62,24 +61,24 @@ public class GameView extends JPanel {
                 int y = i * GameConfig.TILE_SIZE;
 
                 if (map[i][j] == GameConfig.EMPTY) {
-                    g.setColor(Color.WHITE);
+                    g.setColor(GameConfig.EMPTY_COLOR);
                 } // 绘制障碍物的状态
                 else if (map[i][j] == GameConfig.OBSTACLE) {
                     if (obstacleTouched[i][j]) {
-                        g.setColor(Color.BLACK);  // 被触碰的障碍物
+                        g.setColor(GameConfig.TOUCHED_OBSTACLE_COLOR);  // 被触碰的障碍物
                     } else {
-                        g.setColor(Color.WHITE);  // 初始状态障碍物为白色
+                        g.setColor(GameConfig.OBSTACLE_COLOR);  // 初始状态障碍物为白色
                     }
                 } else if (map[i][j] == GameConfig.TREASURE) {
                     // 如果宝藏距离玩家较近，变成黄色
                     int distance = Math.abs(i - model.getPlayerX()) + Math.abs(j - model.getPlayerY());
                     if (distance <= 3) {  // 3格以内视为靠近
-                        g.setColor(Color.YELLOW);
+                        g.setColor(GameConfig.TREASURE_COLOR);
                     } else {
-                        g.setColor(Color.WHITE);  // 初始状态为黄色
+                        g.setColor(GameConfig.EMPTY_COLOR);  // 初始状态为黄色
                     }
                 } else if (map[i][j] == GameConfig.PLAYER) {
-                    g.setColor(Color.BLUE);
+                    g.setColor(GameConfig.PLAYER_COLOR);
                 }
 
                 g.fillRect(x, y, GameConfig.TILE_SIZE, GameConfig.TILE_SIZE);
@@ -90,9 +89,9 @@ public class GameView extends JPanel {
 
         if (!message.isEmpty()) {
             long elapsedTime = System.currentTimeMillis() - messageTime;
-            if (elapsedTime < MESSAGE_DURATION) {
+            if (elapsedTime < GameConfig.MESSAGE_DURATION) {
                 messageAlpha = Math.max(255 - (int)(elapsedTime / 8), 0);  // 让消息渐渐变淡
-                g.setFont(new Font("Arial", Font.BOLD, 24));
+                g.setFont(GameConfig.MESSAGE_FONT);
                 g.setColor(new Color(255, 0, 0, messageAlpha));
 
                 FontMetrics metrics = g.getFontMetrics();

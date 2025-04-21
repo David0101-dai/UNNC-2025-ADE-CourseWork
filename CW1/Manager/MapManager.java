@@ -35,12 +35,6 @@ public class MapManager {
                 }
             }
         }
-        // 初始化障碍物为白色
-        for (int[] obstacle : model.getObstacleManager().getObstacles()) {
-            int x = obstacle[0];
-            int y = obstacle[1];
-            map[x][y] = GameConfig.OBSTACLE;
-        }
     }
 
     public char[][] getMap() {

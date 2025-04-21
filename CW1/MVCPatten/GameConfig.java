@@ -16,10 +16,10 @@ public class GameConfig {
     public static final char PLAYER = 'P';
 
     public static final Color PLAYER_COLOR = Color.BLUE;
-    public static final Color OBSTACLE_COLOR = Color.GRAY;
+    public static final Color EMPTY_COLOR = Color.WHITE;
+    public static final Color OBSTACLE_COLOR = Color.WHITE;
     public static final Color TOUCHED_OBSTACLE_COLOR = Color.BLACK;
     public static final Color TREASURE_COLOR = Color.YELLOW;
-    public static final Color MESSAGE_COLOR = new Color(255, 0, 0, 255);
 
     public static final Font SCORE_FONT = new Font("Arial", Font.BOLD, 16);
     public static final Font MESSAGE_FONT = new Font("Arial", Font.BOLD, 24);
