@@ -43,6 +43,11 @@ public class GreedyPathFinder extends PathFinder {
         return path;
     }
 
+    @Override
+    public boolean pathsAreClear() {
+        return false;
+    }
+
     private int[] getGreedyStep(int fromX, int fromY, int targetX, int targetY,
                                 Set<String> visited, int[] lastMove) {
         int[] directions = {-1, 0, 1, 0, 0, -1, 0, 1}; // up, right, down, left

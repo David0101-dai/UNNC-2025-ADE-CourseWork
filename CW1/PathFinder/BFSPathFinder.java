@@ -61,4 +61,23 @@ public class BFSPathFinder extends PathFinder {
         Collections.reverse(path);
         return path;
     }
+
+    // 实现 pathsAreClear 方法
+    @Override
+    public boolean pathsAreClear() {
+        // 假设玩家位置是 model.getPlayerX(), model.getPlayerY()
+        int playerX = model.getPlayerX();
+        int playerY = model.getPlayerY();
+
+        // 获取最近的宝藏
+        int[] nearestTreasure = findNearestTreasure(playerX, playerY, model.getTreasures());
+        if (nearestTreasure == null) {
+            return false;  // 如果没有找到宝藏，返回 false
+        }
+
+        // 尝试找到一条从玩家到最近宝藏的有效路径
+        List<int[]> path = findPathBFS(playerX, playerY, nearestTreasure[0], nearestTreasure[1]);
+        return path != null && !path.isEmpty();
+    }
+
 }

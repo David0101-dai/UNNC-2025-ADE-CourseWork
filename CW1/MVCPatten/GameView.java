@@ -71,11 +71,11 @@ public class GameView extends JPanel {
                     }
                 } else if (map[i][j] == GameConfig.TREASURE) {
                     // 如果宝藏距离玩家较近，变成黄色
-                    int distance = Math.abs(i - model.playerX) + Math.abs(j - model.playerY);
+                    int distance = Math.abs(i - model.getPlayerX()) + Math.abs(j - model.getPlayerY());
                     if (distance <= 3) {  // 3格以内视为靠近
                         g.setColor(Color.YELLOW);
                     } else {
-                        g.setColor(Color.WHITE);  // 初始状态为白色
+                        g.setColor(Color.YELLOW);  // 初始状态为黄色
                     }
                 } else if (map[i][j] == GameConfig.PLAYER) {
                     g.setColor(Color.BLUE);
@@ -103,6 +103,7 @@ public class GameView extends JPanel {
             }
         }
     }
+
 
     public void setMessage(String msg) {
         message = msg;

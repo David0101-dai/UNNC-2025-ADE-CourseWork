@@ -18,7 +18,6 @@ public class GameController {
     private Map<String, PathFinder> pathFinders;
     private boolean gameOver = false; // 添加游戏结束标志
 
-
     private GameController() {
         model = new GameModel(this);
         view = new GameView(model, this);
@@ -141,8 +140,8 @@ public class GameController {
             updateScoreLabel();
             PathFinder finder = pathFinders.get(hintType);
             if (finder != null) {
-                String message = finder.getDirectionHint(model.playerX, model.playerY);
-                view.setMessage(message);
+                String message = finder.getDirectionHint(model.getPlayerX(), model.getPlayerY());
+                view.setMessage(message); // 在 GameView 中显示提示信息
             }
         } else {
             view.setMessage("Insufficient points to use the hint.");

@@ -15,6 +15,9 @@ public abstract class PathFinder {
     // 抽象方法：找到从当前位置到最近宝藏的路径
     public abstract List<int[]> findPathToNearestTreasure(int playerX, int playerY);
 
+    // 新增的 abstract 方法：检查路径是否畅通
+    public abstract boolean pathsAreClear();
+
     // 公共方法：获取方向建议
     public String getDirectionHint(int playerX, int playerY) {
         List<int[]> treasures = model.getTreasures();
@@ -58,4 +61,6 @@ public abstract class PathFinder {
         }
         return nearest;
     }
+
+
 }

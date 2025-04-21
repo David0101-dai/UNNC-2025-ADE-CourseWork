@@ -16,6 +16,11 @@ public class AStarPathFinder extends PathFinder {
         return findPathAStar(playerX, playerY, nearestTreasure[0], nearestTreasure[1]);
     }
 
+    @Override
+    public boolean pathsAreClear() {
+        return false;
+    }
+
     private List<int[]> findPathAStar(int startX, int startY, int targetX, int targetY) {
         PriorityQueue<AStarNode> openSet = new PriorityQueue<>(Comparator.comparingInt(n -> n.f));
         Map<String, AStarNode> allNodes = new HashMap<>();
