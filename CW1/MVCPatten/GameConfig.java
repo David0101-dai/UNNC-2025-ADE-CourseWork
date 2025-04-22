@@ -17,7 +17,7 @@ public class GameConfig {
 
     public static final Color PLAYER_COLOR = Color.BLUE;
     public static final Color EMPTY_COLOR = Color.WHITE;
-    public static final Color OBSTACLE_COLOR = Color.WHITE;
+    public static final Color OBSTACLE_COLOR = Color.GRAY;
     public static final Color TOUCHED_OBSTACLE_COLOR = Color.BLACK;
     public static final Color TREASURE_COLOR = Color.YELLOW;
 
